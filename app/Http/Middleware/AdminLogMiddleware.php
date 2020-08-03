@@ -3,8 +3,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Events\LogShipped;
 use Closure;
 use Illuminate\Support\Facades\Log;
+use App\Models\Logs;
+
 
 class AdminLogMiddleware
 {
@@ -20,7 +23,7 @@ class AdminLogMiddleware
             'ip' => $request->getClientIp(),
             'status_code' => $response->getStatusCode()
         ];
-        Log::info($data);
+        event(new LogShipped(new Logs(),$data));
 
         return $response;
     }
