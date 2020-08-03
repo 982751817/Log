@@ -7,6 +7,7 @@ use App\Events\LogShipped;
 use Closure;
 use Illuminate\Support\Facades\Log;
 use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
 
 
 class AdminLogMiddleware
@@ -15,13 +16,15 @@ class AdminLogMiddleware
     {
         $response = $next($request);
 
-
+        $adminId = Auth::id();
+        $adminName = Auth::user()->toArray()->userName;
         $data = [
-            'admin_id' => 'ceshi',
+            'adminId' => $adminId,
+            'adminName'=>$adminName,
             'uri' => $request->getPathInfo(),
             'method' => $request->getMethod(),
             'ip' => $request->getClientIp(),
-            'status_code' => $response->getStatusCode()
+            'statusCode' => $response->getStatusCode()
         ];
         event(new LogShipped(new Logs(),$data));
 
