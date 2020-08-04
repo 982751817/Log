@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
 
 class LogsController extends Controller
 {
@@ -13,10 +17,10 @@ class LogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Auth $auth)
     {
-        $logs = Logs::All()->toArray();
-        return response()->json($logs,200);
+        $data=DB::table('logs')->paginate(3);
+        return view('log',['data'=>$data]);
     }
 
     /**
