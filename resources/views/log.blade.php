@@ -96,7 +96,7 @@
                 <caption>
                     <span>管理员访问后台操作 </span>
                     <span class="btn btn-primary" style="float: right">
-                        <a href="" style="text-decoration: none;color: #000000;">新增</a>
+                        <a href="{{url('/log/create')}}" style="text-decoration: none;color: #000000;">新增</a>
                     </span>
                 </caption>
 
@@ -115,7 +115,7 @@
                 @foreach($data as $val)
                     <tr>
                         <td>{{$val->id}}</td>
-                        <td>{{$val->adminName}}</td>
+                        <td>{{$val->userName}}</td>
                         <td>{{$val->uri}}</td>
                         <td>{{$val->method}}</td>
                         <td>{{$val->ip}}</td>

@@ -17,13 +17,13 @@ class AdminLogMiddleware
         $response = $next($request);
         $adminUser = Auth::user();
         $adminId   = $adminUser['id'];
-        $adminName = $adminUser['userName'];
+        $userName = $adminUser['userName'];
         $data = [
             'ip'         => $request->getClientIp(),
             'uri'        => $request->getPathInfo(),
             'method'     => $request->getMethod(),
             'adminId'    => $adminId,
-            'adminName'  => $adminName,
+            'userName'   => $userName,
             'statusCode' => $response->getStatusCode()
         ];
         event(new LogShipped($data));

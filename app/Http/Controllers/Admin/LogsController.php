@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Logs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use App\User;
 
 
 class LogsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('log')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +33,7 @@ class LogsController extends Controller
      */
     public function create()
     {
-        //
+       return view('create');
     }
 
     /**
@@ -39,15 +42,20 @@ class LogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Logs $logs)
+    public function store(Request $request,Logs $logs,User $user)
     {
-        $data['admin_id']=$request->post('admin_id','123');
+        $data['userName'] = $request->post('userName');
+        $user = User::where(['userName'=>$data['userName']])->first();
+        if(!$user){
+            throw new \Exception('没有此用户',404);
+        }
+        $data['adminId']=$user->id;
         $data['method']=$request->post('method','post');
         $data['uri']=$request->post('uri','www.baidu.com');
         $data['ip']=$request->post('ip','114.245.111.1');
-        $data['status_code']=$request->post('status_code','200');
+        $data['statusCode']=$request->post('statusCode','200');
         $result = Logs::create($data);
-        return response()->json($result->toArray(),201);
+        return redirect('/log');
     }
 
     /**

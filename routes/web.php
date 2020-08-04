@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::middleware(['log','auth'])->resource('/log','Admin\LogsController');
-
-Auth::routes();
+Route::middleware(['log','auth'])->group(function () {
+    Route::middleware(['log','auth'])->resource('/log','Admin\LogsController');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+

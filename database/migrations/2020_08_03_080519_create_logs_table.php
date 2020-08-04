@@ -16,6 +16,7 @@ class CreateLogsTable extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('adminId')->comment('管理员id称');
+            $table->string('userName')->comment('管理员名称');
             $table->string('method',5)->comment('请求的类型');
             $table->string('uri',50)->comment('管理员操作uri');
             $table->ipAddress('ip')->comment('登录ip');
