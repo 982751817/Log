@@ -60,8 +60,7 @@ class LogsController extends Controller
         $data['statusCode']=$request->post('statusCode','200');
         event(new LogShipped($data));
 //        return redirect('/log');
-
-        return response()->json($data,201);
+        return response()->json(['data'=>$data,'code'=>201,'message'=>'新增成功'],201);
     }
 
     /**
@@ -108,6 +107,6 @@ class LogsController extends Controller
     public function destroy($id)
     {
         Logs::where(['id'=>$id])->update(['isdel'=>1]);
-        return response()->json('删除成功',204);
+        return response()->json(['messsage'=>'删除成功','code'=>204],204);
     }
 }

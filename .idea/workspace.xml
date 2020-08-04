@@ -28,7 +28,6 @@
     <list default="true" id="ca9cfca7-5531-4568-a18f-3e090a15a11b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/LogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/LogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/SendLogNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendLogNotification.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/create.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

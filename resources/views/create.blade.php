@@ -59,6 +59,7 @@
             url:"{{url('/log')}}",
             success:function(data){
                 console.log(data);
+                window.location.href="{{url('/log')}}";
             }
         })
     }
