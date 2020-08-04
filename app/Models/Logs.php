@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Logs extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['admin_id', 'method','uri','ip','status_code'];
+    protected $fillable = ['adminId', 'method','uri','ip','statusCode'];
 }

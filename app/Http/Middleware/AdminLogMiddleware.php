@@ -16,14 +16,15 @@ class AdminLogMiddleware
     {
         $response = $next($request);
 
-        $adminId = Auth::id();
-        $adminName = Auth::user()->toArray()->userName;
+        $adminUser = Auth::user();
+        $adminId   = $adminUser['id'];
+        $adminName = $adminUser['userName'];
         $data = [
-            'adminId' => $adminId,
-            'adminName'=>$adminName,
-            'uri' => $request->getPathInfo(),
-            'method' => $request->getMethod(),
-            'ip' => $request->getClientIp(),
+            'ip'         => $request->getClientIp(),
+            'uri'        => $request->getPathInfo(),
+            'method'     => $request->getMethod(),
+            'adminId'    => $adminId,
+            'adminName'  => $adminName,
             'statusCode' => $response->getStatusCode()
         ];
         event(new LogShipped(new Logs(),$data));

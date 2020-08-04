@@ -19,4 +19,3 @@ Route::get('/', function () {
 Route::middleware(['log','auth'])->resource('/log','Admin\LogsController');
 
 Auth::routes();
-Route::middleware('auth')->get('/log','LogController@index')->name('log');

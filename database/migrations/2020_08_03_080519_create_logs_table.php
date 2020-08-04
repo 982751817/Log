@@ -21,7 +21,8 @@ class CreateLogsTable extends Migration
             $table->ipAddress('ip')->comment('登录ip');
             $table->integer('statusCode')->comment('返回状态码');
             $table->timestamp('operate_time')->useCurrent()->comment('操作时间');
-            $table->index('admin_id');
+            $table->index('adminId');
+            $table->engine = 'MyISAM';
         });
     }
 
