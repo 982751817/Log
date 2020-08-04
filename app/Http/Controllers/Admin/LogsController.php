@@ -9,7 +9,7 @@ use App\Models\Logs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\Http\Requests\LogSubmitFormRequest;
+use App\Http\Validate\LogValidate;
 
 class LogsController extends Controller
 {
@@ -43,8 +43,11 @@ class LogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Logs $logs,User $user,LogSubmitFormRequest $vali)
+    public function store(Request $request,Logs $logs,User $user)
     {
+
+//        $result =new LogValidate($request->all());
+//        $res = $result->goCheck();
         $data['userName'] = $request->post('userName');
         $user = User::where(['userName'=>$data['userName']])->first();
         if(!$user){
