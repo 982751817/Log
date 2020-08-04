@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Events\LogShipped;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Log;
 use App\Models\Logs;
 
 class SendLogNotification implements ShouldQueue

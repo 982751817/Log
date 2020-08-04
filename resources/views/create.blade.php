@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <title>新增</title>
 
@@ -23,7 +24,7 @@
     </style>
 </head>
 <body>
-<form action="{{url('log')}}" method="post">
+<form  id="form_value">
     <div class="form-group">
         <label for="userNameInputEmail1">UserName</label>
         <input type="text" class="form-control" name="userName" id="userNameInputEmail1" placeholder="userName">
@@ -45,8 +46,21 @@
         <label for="exampleInputStatusCode">statusCode</label>
         <input type="text" class="form-control" name="statusCode" id="exampleInputStatusCode" placeholder="statusCode">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <input type="button" value="提交" onclick="subForm()">
 </form>
 
 </body>
+<script>
+    function subForm(){
+        var data = $('#form_value').serialize();
+        $.ajax({
+            method:"post",
+            data:data,
+            url:"{{url('/log')}}",
+            success:function(data){
+                console.log(data);
+            }
+        })
+    }
+</script>
 </html>
