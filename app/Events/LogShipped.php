@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Logs;
+
 use Illuminate\Queue\SerializesModels;
 
 class LogShipped
@@ -18,9 +18,8 @@ class LogShipped
      * @param  Logs  $logs
      * @return void
      */
-    public function __construct(Logs $logs,array $data)
+    public function __construct(array $data)
     {
-        $this->logs = $logs;
         $this->data = $data;
     }
 }

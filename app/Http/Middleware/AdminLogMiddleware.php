@@ -15,7 +15,6 @@ class AdminLogMiddleware
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-
         $adminUser = Auth::user();
         $adminId   = $adminUser['id'];
         $adminName = $adminUser['userName'];
@@ -27,7 +26,7 @@ class AdminLogMiddleware
             'adminName'  => $adminName,
             'statusCode' => $response->getStatusCode()
         ];
-        event(new LogShipped(new Logs(),$data));
+        event(new LogShipped($data));
 
         return $response;
     }
