@@ -19,6 +19,9 @@ Route::middleware(['log','auth'])->group(function () {
     Route::middleware(['log','auth'])->resource('/log','Admin\LogsController');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('log', 'Admin\LogsController@index')->name('log.index');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 

@@ -22,9 +22,6 @@
     <list default="true" id="ca9cfca7-5531-4568-a18f-3e090a15a11b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/LogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/LogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminLogMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminLogMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Logs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Logs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_03_080519_create_logs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_03_080519_create_logs_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/log.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/log.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>

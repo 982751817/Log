@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>用户列表</title>
 
     <!-- Fonts -->
@@ -89,7 +89,6 @@
 </head>
 <body>
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -109,11 +108,12 @@
                     <th>ip</th>
                     <th>返回码</th>
                     <th>操作时间</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $val)
-                    <tr>
+                    <tr class="delete_{{$val->id}}">
                         <td>{{$val->id}}</td>
                         <td>{{$val->userName}}</td>
                         <td>{{$val->uri}}</td>
@@ -121,6 +121,7 @@
                         <td>{{$val->ip}}</td>
                         <td>{{$val->statusCode}}</td>
                         <td>{{$val->operate_time}}</td>
+                        <td class="btn btn-danger " onclick='delete_log("{{url('/log/'.$val->id)}}")'>删除</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -134,4 +135,20 @@
 </div>
 
 </body>
+<script>
+    function delete_log(uri){
+        confirm_ = confirm('This action will delete current order! Are you sure?');
+        if(confirm_){
+            $.ajax({
+                type:"DELETE",
+                url:uri,
+                success:function(msg){
+                    //alert("test order");
+                    //all delete is success,this can be execute
+                    location.reload();
+                }
+            });
+        }
+    }
+</script>
 </html>

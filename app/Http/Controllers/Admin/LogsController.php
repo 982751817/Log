@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\LogShipped;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
-
+use App\Http\Requests\LogSubmitFormRequest;
 
 class LogsController extends Controller
 {
@@ -22,7 +23,7 @@ class LogsController extends Controller
      */
     public function index(Auth $auth)
     {
-        $data=DB::table('logs')->paginate(3);
+        $data=DB::table('logs')->where(['isdel'=>0])->paginate(10);
         return view('log',['data'=>$data]);
     }
 
@@ -42,7 +43,7 @@ class LogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Logs $logs,User $user)
+    public function store(Request $request,Logs $logs,User $user,LogSubmitFormRequest $vali)
     {
         $data['userName'] = $request->post('userName');
         $user = User::where(['userName'=>$data['userName']])->first();
@@ -54,7 +55,7 @@ class LogsController extends Controller
         $data['uri']=$request->post('uri','www.baidu.com');
         $data['ip']=$request->post('ip','114.245.111.1');
         $data['statusCode']=$request->post('statusCode','200');
-        $result = Logs::create($data);
+        event(new LogShipped($data));
         return redirect('/log');
     }
 
@@ -66,7 +67,8 @@ class LogsController extends Controller
      */
     public function show($id)
     {
-        //
+        $log = Logs::where(['id'=>$id])->first();
+        return response()->json($log->toArray(),200);
     }
 
     /**
@@ -100,6 +102,7 @@ class LogsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Logs::where(['id'=>$id])->update(['isdel'=>1]);
+        return response('删除成功',204);
     }
 }
